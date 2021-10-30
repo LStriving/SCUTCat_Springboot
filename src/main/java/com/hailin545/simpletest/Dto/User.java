@@ -13,10 +13,11 @@ public class User {
     String name;
     String type;
     String time;
-
-    public void Register(String uid,String name){
+    int gender;
+    public void Register(String uid,String name,int gender){
         setUid(uid);
         setName(name);
+        setGender(gender);
         SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd  HH:mm:ss");
         setTime(df.format(new Date()));
     }

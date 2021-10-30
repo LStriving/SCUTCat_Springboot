@@ -19,7 +19,7 @@ public class Post {
     int follow=0;
     int share=0;
 
-    public void PublishPost(String pid,String uid,String content,String tag){
+    public Post(String pid,String uid,String content,String tag){
         setPid(pid);
         setUid(uid);
         setContent(content);

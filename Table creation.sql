@@ -17,39 +17,33 @@ create table user
     uid varchar(50) primary key ,
     name varchar(50) character set utf8 collate utf8_general_ci null default null,
     type varchar(20) comment 'User type: administrator;common user;'default 'common user',
-    registerTime date not null
+    registerTime date not null,
+    gender int(1),
+    avatar_url varchar(200) comment'User head image url'
 )ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci;
 
 drop table if exists userFollow;
 create table userFollow
 (
-    uid varchar(50)primary key comment 'The primary user',
+    uid varchar(50) comment 'The primary user',
     uid_followed varchar(50) comment 'The user followed by the primary user',
-    foreign key (uid_followed) references userFollow(uid) on delete cascade
-)ENGINE = InnoDB  AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ;
-
-drop table if exists userFan;
-create table userFan
-(
-   uid varchar(50)primary key comment 'The primary user',
-   uid_followed varchar(50) comment 'The user follow the primary user',
-   foreign key (uid_followed) references userFollow(uid) on delete cascade
+    foreign key (uid_followed) references userFollow(uid) on delete cascade,
+    primary key (uid,uid_followed)
 )ENGINE = InnoDB  AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ;
 
 drop table if exists post;
 create table post
 (
-     pid varchar(50) primary key ,
-     uid varchar(50),
-     content longtext character set utf8 collate utf8_general_ci not null,
-     tag varchar(100) comment 'label of the post',
-     'like' int(8)default 0,
-     read int(8)default 0,
-     follow int(8)default 0,
-     share int(8)default 0,
-     time datetime not null,
-     primary key (pid),
-     foreign key (uid) references user(uid)
+    pid varchar(50) primary key ,
+    uid varchar(50),
+    content longtext character set utf8 collate utf8_general_ci not null,
+    tag varchar(100) comment 'label of the post',
+    `like` int(8)default 0,
+    `read` int(8)default 0,
+    follow int(8)default 0,
+    share int(8)default 0,
+    time datetime not null,
+    foreign key (uid) references user(uid)
 )ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci;
 
 drop table if exists p_pic;#post picture
@@ -81,7 +75,7 @@ create table `history`
     primary key (uid,time),
     foreign key (uid)references user(uid) on delete cascade,
     foreign key (pid)references post(pid)
-);
+)ENGINE = InnoDB  AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci;
 
 drop table if exists comment;
 create table comment
