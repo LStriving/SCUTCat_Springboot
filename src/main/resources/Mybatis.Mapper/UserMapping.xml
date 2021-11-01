@@ -2,8 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hailin545.simpletest.Mapper.UserMapper">
+<mapper namespace="com.scutcat.demo.Mapper.UserMapper">
     <select id="getUser"  parameterType="String" resultType="User">
         select * from scutcat.user where uid=#{uid}
     </select>
+    <insert id="addUser" parameterType="User" >
+        insert into scutcat.user(uid, name, registerTime, gender, avatar_url)
+        VALUES(#{uid}, #{name}, #{registerTime}, #{gender}, #{avatar_url})
+    </insert>
+    <update id="updateUser" parameterType="User" >
+        update scutcat.user
+        set uid=#{uid},name=#{name},gender=#{gender},avatar_url=#{avatarUrl}
+        where uid=#{uid}
+    </update>
 </mapper>

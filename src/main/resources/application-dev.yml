@@ -28,3 +28,6 @@ spring:
       max-pool-prepared-statement-per-connection-size: 20
       filters: stat,wall
       use-global-data-source-stat: true
+mybatis:
+  type-aliases-package: com.scutcat.demo.Dto
+  mapper-locations: classpath:Mybatis.Mapper/*.xml

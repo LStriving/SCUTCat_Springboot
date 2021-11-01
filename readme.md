@@ -7,7 +7,7 @@
 <div align='center'>
 
 [![Java 8](https://img.shields.io/badge/JAVA-8-red?style=for-the-badge)]()
-[![Springboot](https://img.shields.io/badge/springboot-2.0+-green?style=for-the-badge)](https://spring.io/projects/spring-boot)
+[![Springboot](https://img.shields.io/badge/springboot-2.5-green?style=for-the-badge)](https://spring.io/projects/spring-boot)
 [![MySql 5.7](https://img.shields.io/badge/MySql-5.7.0-blue?style=for-the-badge)](https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-winx64.zip)
 [![Maven 3.8](https://img.shields.io/badge/Maven-3.8-lightblue?style=for-the-badge)]()
 [![support os](https://img.shields.io/badge/os-linux%2C%20win%2C%20mac-yellow.svg?style=for-the-badge)]()
