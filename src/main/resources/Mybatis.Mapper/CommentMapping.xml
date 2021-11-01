@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hailin545.simpletest.Mapper.CommentMapper">
+    <select id="getComment"  parameterType="String" resultType="Comment">
+        select * from scutcat.comment where cid=#{cid}
+    </select>
+    <insert id="addComment" parameterType="Comment" >
+        insert into scutcat.comment(cid, uid, pid, content, `like`, time, top) VALUES
+        (#{cid},#{uid},#{pid},#{content},#{like,jdbcType=INTEGER},#{time},#{top})
+    </insert>
+    <delete id="deleteComment" parameterType="String">
+        delete from scutcat.comment where cid=#{cid}
+    </delete>
+    <update id="updateComment" parameterType="Comment">
+        update scutcat.comment set
+        `like`=#{like,jdbcType=INTEGER},top=#{top}
+        where cid=#{cid}
+    </update>
+</mapper>

@@ -22,7 +22,7 @@ public class Comment {
         setPid(pid);
         setContent(content);
         setUid(uid);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd  HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
         setTime(simpleDateFormat.format(new Date()));
     }
 }

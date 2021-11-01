@@ -24,7 +24,7 @@ public class Post {
         setUid(uid);
         setContent(content);
         setTag(tag);
-        SimpleDateFormat ft = new SimpleDateFormat("yyyy-mm-dd  HH:mm:ss");
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
         setTime(ft.format(new Date()));
     }
 }

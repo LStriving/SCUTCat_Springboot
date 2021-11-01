@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hailin545.simpletest.Mapper.PostMapper">
-    <select id="getPost"  parameterType="String" resultType="Post">
-        select * from scutcat.answer where pid=#{pid}
+<mapper namespace="com.hailin545.simpletest.Mapper.UserMapper">
+    <select id="getUser"  parameterType="String" resultType="User">
+        select * from scutcat.user where uid=#{uid}
     </select>
 </mapper>
