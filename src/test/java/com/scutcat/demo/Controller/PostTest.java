@@ -17,4 +17,8 @@ public class PostTest {
     public void testLikePost(){
         System.out.println(controller.like("123456","123"));
     }
+    @Test
+    public void testDislikePost(){
+        System.out.println(controller.dislike("123456","123"));
+    }
 }

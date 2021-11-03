@@ -5,9 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class UserFollowPost {
+@NoArgsConstructor
+public class History {
     String uid;
     String pid;
+    String time;
 }

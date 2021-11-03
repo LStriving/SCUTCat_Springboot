@@ -11,4 +11,9 @@ import org.springframework.stereotype.Service;
 @Service()
 public interface CommentService {
     JsonResult publishComment(Comment comment);
+    JsonResult like(String uid, String cid);
+    JsonResult delete(String uid, String cid);
+    JsonResult dislike(String uid, String cid);
+    JsonResult getByPostId(String pid);
+    JsonResult getByPostIdWithTime(String pid);
 }

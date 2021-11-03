@@ -20,6 +20,7 @@ public class Post {
     int read=0;
     int follow=0;
     int share=0;
+    double hot=0;
 
     public Post(String pid,String uid,String content,String tag){
         setPid(pid);

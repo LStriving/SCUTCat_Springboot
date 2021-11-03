@@ -11,4 +11,9 @@ import org.springframework.stereotype.Service;
 public interface UserService {
     JsonResult login(String uid);
     JsonResult getUser(String uid);
+    JsonResult follow(String uid, String uuid);
+    JsonResult unfollow(String uid, String uuid);
+    JsonResult getFans(String uid);
+    JsonResult getFollowing(String uid);
+    JsonResult updateInfo(String uid, String name, String type, int gender, String avatarUrl);
 }

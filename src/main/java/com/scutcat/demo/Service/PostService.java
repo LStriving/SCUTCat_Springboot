@@ -12,4 +12,11 @@ public interface PostService {
     JsonResult addPost(String uid,String pid,String content,String tag);
     JsonResult deletePost(String uid, String pid);
     JsonResult likePost(String uid, String pid);
+    JsonResult dislikePost(String uid, String pid);
+    JsonResult search(String pattern);
+    JsonResult getUserAll(String uid);
+    JsonResult follow(String uid, String pid);
+    JsonResult unfollow(String uid, String pid);
+    JsonResult read(String uid, String pid);
+    JsonResult getUserFollow(String uid);
 }

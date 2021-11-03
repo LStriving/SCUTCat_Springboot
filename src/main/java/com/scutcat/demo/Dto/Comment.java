@@ -19,7 +19,7 @@ public class Comment {
     String time;
     boolean top=false;
 
-    public void Review(String cid,String pid,String uid,String content){
+    public Comment(String cid,String pid,String uid,String content){
         setCid(cid);
         setPid(pid);
         setContent(content);

@@ -18,4 +18,19 @@
         `like`=#{like,jdbcType=INTEGER},top=#{top}
         where cid=#{cid}
     </update>
+    <insert id="likeComment" parameterType="LikeComment" >
+        insert into scutcat.likecomment(uid, cid) values (#{uid},#{cid})
+    </insert>
+    <select id="likeCommentUser" parameterType="String" resultType="String">
+        select uid from scutcat.likecomment where cid=#{cid}
+    </select>
+    <delete id="dislikeComment" parameterType="LikeComment">
+        delete from scutcat.likecomment where cid=#{cid} and uid=#{uid}
+    </delete>
+    <select id="getCommentByPid" parameterType="String" resultType="String">
+        select cid from scutcat.comment where  pid=#{pid} order by `like` desc
+    </select>
+    <select id="getCommentByPidByTime" parameterType="String" resultType="String">
+        select cid from scutcat.comment where  pid=#{pid} group by `time` desc
+    </select>
 </mapper>

@@ -15,4 +15,19 @@
         set uid=#{uid},name=#{name},gender=#{gender},avatar_url=#{avatarUrl}
         where uid=#{uid}
     </update>
+    <select id="getFollow" parameterType="String" resultType="String">
+        select uid_followed from scutcat.userfollow where uid=#{uid}
+    </select>
+    <select id="getFans" parameterType="String" resultType="String">
+        select uid from scutcat.userfollow where uid_followed=#{uid}
+    </select>
+    <insert id="followUser" parameterType="UserFollow">
+        insert into scutcat.userfollow(uid, uid_followed) values (#{uid},#{uuid})
+    </insert>
+    <delete id="unfollowUser" parameterType="UserFollow">
+        delete from scutcat.userfollow where uid=#{uid} and uid_followed=#{uuid}
+    </delete>
+    <select id="getHistory" parameterType="String" resultType="History">
+        select * from scutcat.history where uid=#{uid}
+    </select>
 </mapper>

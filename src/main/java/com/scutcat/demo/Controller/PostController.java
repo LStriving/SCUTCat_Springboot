@@ -14,6 +14,17 @@ public class PostController {
     @Resource
     PostService postService;
 
+    /**
+     * get Post and add it user's view history
+     * @param uid user id
+     * @param pid post id
+     * @return json with data Post
+     */
+    @RequestMapping("/read")
+    public JsonResult read(@RequestParam("uid")String uid,
+                           @RequestParam("pid")String pid){
+        return postService.read(uid,pid);
+    }
     @RequestMapping("/publish")
     public JsonResult publish(@RequestParam("uid")String uid,
                               @RequestParam("pid")String pid,
@@ -30,5 +41,36 @@ public class PostController {
     public JsonResult like(@RequestParam("uid")String uid,
                            @RequestParam("pid")String pid){
         return postService.likePost(uid,pid);
+    }
+    @RequestMapping("/dislike")
+    public JsonResult dislike(@RequestParam("uid")String uid,
+                           @RequestParam("pid")String pid){
+        return postService.dislikePost(uid,pid);
+    }
+    @RequestMapping("/search")
+    public JsonResult search(@RequestParam("pattern")String pattern){
+        return postService.search(pattern);
+    }
+    /**
+     * @param uid user id
+     * @return return the id of user's posts order by time
+     */
+    @RequestMapping("/getUserAll")
+    public JsonResult getUserAll(@RequestParam("uid")String uid){
+        return postService.getUserAll(uid);
+    }
+    @RequestMapping("/follow")
+    public JsonResult follow(@RequestParam("pid")String pid,
+                             @RequestParam("uid")String uid){
+        return postService.follow(uid,pid);
+    }
+    @RequestMapping("/unfollow")
+    public JsonResult unfollow(@RequestParam("pid")String pid,
+                             @RequestParam("uid")String uid){
+        return postService.unfollow(uid,pid);
+    }
+    @RequestMapping("/getUserFollow")
+    public JsonResult getUserFollow(@RequestParam("uid")String uid){
+        return postService.getUserFollow(uid);
     }
 }

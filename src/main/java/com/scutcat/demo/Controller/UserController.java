@@ -14,9 +14,34 @@ public class UserController {
     @Resource
     UserService service;
 
-    @RequestMapping("getInfo")
+    @RequestMapping("/getInfo")
     public JsonResult getInfo(@RequestParam("uid")String uid){
         return service.getUser(uid);
     }
-
+    @RequestMapping("/follow")
+    public JsonResult follow(@RequestParam("uid")String uid,
+                             @RequestParam("uuid")String uuid){
+        return service.follow(uid,uuid);
+    }
+    @RequestMapping("/Unfollow")
+    public JsonResult unfollow(@RequestParam("uid")String uid,
+                               @RequestParam("uuid")String uuid){
+        return service.unfollow(uid,uuid);
+    }
+    @RequestMapping("/getFans")
+    public JsonResult getFans(@RequestParam("uid")String uid){
+        return service.getFans(uid);
+    }
+    @RequestMapping("/getFollowing")
+    public JsonResult getFollowing(@RequestParam("uid")String uid){
+        return service.getFollowing(uid);
+    }
+    @RequestMapping("/updateInfo")
+    public JsonResult upadateInfo(@RequestParam("uid")String uid,
+                                  @RequestParam("name")String name,
+                                  @RequestParam("type")String type,
+                                  @RequestParam("gender")int gender,
+                                  @RequestParam("avatarUrl")String avatarUrl){
+        return service.updateInfo(uid,name,type,gender,avatarUrl);
+    }
 }

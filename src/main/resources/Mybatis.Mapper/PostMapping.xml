@@ -14,7 +14,7 @@
         delete from scutcat.post where pid=#{pid}
     </delete>
     <select id="getUserAll" parameterType="String" resultType="Post">
-        select * from scutcat.post where uid=#{uid}
+        select pid from scutcat.post where uid=#{uid} group by time desc
     </select>
     <update id="updatePost" parameterType="Post" >
         update scutcat.post
@@ -22,10 +22,28 @@
             `read`=#{read,jdbcType=INTEGER},follow=#{follow,jdbcType=INTEGER},share=#{share,jdbcType=INTEGER}
         where pid=#{pid}
     </update>
-    <insert id="likePost" parameterType="LikeComment">
+    <insert id="likePost" parameterType="LikePost">
         insert into scutcat.likePost(uid,pid)values(#{uid},#{pid})
     </insert>
     <select id="getPostLikeUser" parameterType="String" resultType="String">
-        select * from scutcat.likepost where pid=#{pid}
+        select uid from scutcat.likepost where pid=#{pid}
+    </select>
+    <delete id="dislikePost" parameterType="LikePost">
+        delete from scutcat.likepost where uid=#{uid} and pid=#{pid}
+    </delete>
+    <insert id="follow" parameterType="UserFollowPost">
+        insert into scutcat.userfollowpost(uid, pid) values (#{uid},#{pid})
+    </insert>
+    <select id="getPostFollowUser" parameterType="String" resultType="String">
+        select uid from scutcat.userfollowpost where pid=#{pid}
+    </select>
+    <delete id="unfollow" parameterType="UserFollowPost">
+        delete from scutcat.userfollowpost where pid=#{pid} and uid=#{uid}
+    </delete>
+    <insert id="addHistory" parameterType="History">
+        insert into scutcat.history(uid, pid, time) values (uid=#{uid},pid=#{pid},`time`=#{time})
+    </insert>
+    <select id="getPostFollowedByUser" parameterType="String" resultType="String">
+        select pid from scutcat.userfollowpost where uid=#{uid}
     </select>
 </mapper>

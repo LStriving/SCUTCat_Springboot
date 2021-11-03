@@ -16,7 +16,7 @@ create table user
 (
     uid varchar(50) primary key ,
     name varchar(50) character set utf8 collate utf8_general_ci null default null,
-    type varchar(20) comment 'User type: administrator;common user;'default 'common user',
+    type varchar(20) comment 'User type: Admin;common user;'default 'common user',
     registerTime date not null,
     gender int(1),
     avatar_url varchar(200) comment'User head image url'
@@ -42,6 +42,7 @@ create table post
     `read` int(8)default 0,
     follow int(8)default 0,
     share int(8)default 0,
+    hot double(10,3)default 0.0,
     time datetime not null,
     foreign key (uid) references user(uid)
 )ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci;

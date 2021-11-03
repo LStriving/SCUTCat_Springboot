@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 public class UserFollow {
     String uid;
     String uid_followed;
-    public void follow(String uid,String uid_followed) {
+    public UserFollow(String uid,String uid_followed) {
         setUid(uid);
         setUid_followed(uid_followed);
     }
