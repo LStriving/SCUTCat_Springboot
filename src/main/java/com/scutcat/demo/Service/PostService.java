@@ -10,5 +10,6 @@ import org.springframework.stereotype.Service;
 @Service()
 public interface PostService {
     JsonResult addPost(String uid,String pid,String content,String tag);
-
+    JsonResult deletePost(String uid, String pid);
+    JsonResult likePost(String uid, String pid);
 }

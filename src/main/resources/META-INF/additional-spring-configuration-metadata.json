@@ -1,8 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "server.sl.key-store-password",
-      "type": "java.lang.String",
-      "description": "Description for server.sl.key-store-password."
-  }
-] }

@@ -22,4 +22,10 @@
             `read`=#{read,jdbcType=INTEGER},follow=#{follow,jdbcType=INTEGER},share=#{share,jdbcType=INTEGER}
         where pid=#{pid}
     </update>
+    <insert id="likePost" parameterType="LikeComment">
+        insert into scutcat.likePost(uid,pid)values(#{uid},#{pid})
+    </insert>
+    <select id="getPostLikeUser" parameterType="String" resultType="String">
+        select * from scutcat.likepost where pid=#{pid}
+    </select>
 </mapper>

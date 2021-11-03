@@ -13,4 +13,8 @@ public class PostTest {
     public void testPublish(){
         System.out.println(controller.publish("123456","123","猫猫走丢了","#求助"));
     }
+    @Test
+    public void testLikePost(){
+        System.out.println(controller.like("123456","123"));
+    }
 }

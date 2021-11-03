@@ -21,4 +21,14 @@ public class PostController {
                               @RequestParam("tag")String tag){
         return postService.addPost(uid,pid,content,tag);
     }
+    @RequestMapping("/delete")
+    public JsonResult delete(@RequestParam("uid")String uid,
+                             @RequestParam("pid")String pid){
+        return postService.deletePost(uid,pid);
+    }
+    @RequestMapping("/like")
+    public JsonResult like(@RequestParam("uid")String uid,
+                           @RequestParam("pid")String pid){
+        return postService.likePost(uid,pid);
+    }
 }

@@ -14,13 +14,15 @@ public class User {
     String uid;
     String name;
     String type;
-    String time;
+    String registerTime;
     int gender;
-    public User(String uid,String name,int gender){
+    String avatar_url;
+    public User(String uid,String name,int gender,String avatarUrl){
         setUid(uid);
         setName(name);
         setGender(gender);
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
-        setTime(df.format(new Date()));
+        setRegisterTime(df.format(new Date()));
+        setAvatar_url(avatarUrl);
     }
 }

@@ -101,4 +101,24 @@ create table sciArticle
     title varchar(50)character set utf8 collate utf8_general_ci not null
 );
 
+drop table if exists likeComment;
+create table likeComment
+(
+    uid varchar(50),
+    cid varchar(50),
+    primary key (uid,cid),
+    foreign key (uid)references user(uid) on delete cascade ,
+    foreign key (cid)references comment(cid) on delete cascade
+)ENGINE = InnoDB  AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci;
+
+drop table if exists likePost;
+create table likePost
+(
+    uid varchar(50),
+    pid varchar(50),
+    primary key (uid,pid),
+    foreign key (uid)references user(uid) on delete cascade ,
+    foreign key (pid)references post(pid) on delete cascade
+)ENGINE = InnoDB  AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci;
+
 set foreign_key_checks = 1;

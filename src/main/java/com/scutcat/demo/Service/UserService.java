@@ -10,4 +10,5 @@ import org.springframework.stereotype.Service;
 @Service()
 public interface UserService {
     JsonResult login(String uid);
+    JsonResult getUser(String uid);
 }
