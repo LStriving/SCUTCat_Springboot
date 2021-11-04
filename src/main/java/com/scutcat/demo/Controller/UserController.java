@@ -37,7 +37,7 @@ public class UserController {
         return service.getFollowing(uid);
     }
     @RequestMapping("/updateInfo")
-    public JsonResult upadateInfo(@RequestParam("uid")String uid,
+    public JsonResult updateInfo(@RequestParam("uid")String uid,
                                   @RequestParam("name")String name,
                                   @RequestParam("type")String type,
                                   @RequestParam("gender")int gender,
