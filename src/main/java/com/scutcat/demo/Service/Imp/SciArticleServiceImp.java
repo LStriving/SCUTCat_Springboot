@@ -4,6 +4,10 @@ import com.scutcat.demo.Dto.SciArticle;
 import com.scutcat.demo.Mapper.SciArticleMapper;
 import com.scutcat.demo.Service.SciArticleService;
 import com.scutcat.demo.uitls.JsonResult;
+import com.scutcat.demo.uitls.dropDuplicate;
+import org.ansj.domain.Result;
+import org.ansj.domain.Term;
+import org.ansj.splitWord.analysis.ToAnalysis;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,7 +28,9 @@ public class SciArticleServiceImp implements SciArticleService {
 
     @Override
     public JsonResult search(String pattern) {
-        List<String> allMatch = mapper.search(pattern);
+        //all match
+        List<String> res = mapper.search(pattern);
+
         //partially match
         //separate pattern to key word
 
@@ -32,8 +38,12 @@ public class SciArticleServiceImp implements SciArticleService {
         //high score match
 
         //low score match
+        Result parse = ToAnalysis.parse(pattern);
 
-        return null;
+        for (Term word:parse.getTerms()){
+            res.addAll(mapper.search(word.getName()));
+        }
+        return new JsonResult(true,"found", dropDuplicate.drop(res));
     }
 
     @Override

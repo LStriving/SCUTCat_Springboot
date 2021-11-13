@@ -8,11 +8,16 @@ import com.scutcat.demo.Mapper.PostMapper;
 import com.scutcat.demo.Mapper.UserMapper;
 import com.scutcat.demo.Service.PostService;
 import com.scutcat.demo.uitls.JsonResult;
+import com.scutcat.demo.uitls.dropDuplicate;
+import org.ansj.domain.Result;
+import org.ansj.domain.Term;
+import org.ansj.splitWord.analysis.ToAnalysis;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service("PostService")
 public class PostServiceImp implements PostService {
@@ -87,11 +92,16 @@ public class PostServiceImp implements PostService {
 
     @Override
     public JsonResult search(String pattern) {
-        //搜索tag
+        //tag,content,title
+        //all match
+        List<String> res = postMapper.search(pattern);
+        //low score match
+        Result parse = ToAnalysis.parse(pattern);
+        for (Term word:parse.getTerms()){
+            res.addAll(postMapper.search(word.getName()));
+        }
 
-        //搜索标题
-        //搜索内容
-        return null;
+        return new JsonResult(true,"found", dropDuplicate.drop(res));
     }
 
     @Override

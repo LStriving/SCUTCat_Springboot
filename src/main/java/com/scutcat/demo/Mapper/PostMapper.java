@@ -25,4 +25,5 @@ public interface PostMapper {
     void unfollow(UserFollowPost userFollowPost);
     void addHistory(History history);
     List<String>getPostFollowedByUser(String uid);
+    List<String> search(String name);
 }
