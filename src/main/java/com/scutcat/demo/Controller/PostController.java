@@ -73,4 +73,8 @@ public class PostController {
     public JsonResult getUserFollow(@RequestParam("uid")String uid){
         return postService.getUserFollow(uid);
     }
+    @RequestMapping("/share")
+    public JsonResult sharePost(@RequestParam("pid")String pid){
+        return postService.sharePost(pid);
+    }
 }

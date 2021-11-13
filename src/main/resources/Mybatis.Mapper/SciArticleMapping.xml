@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scutcat.demo.Mapper.SciArticleMapper">
+    <select id="getAll" resultType="String">
+        select aid from scutcat.sciarticle
+    </select>
+    <select id="search" resultType="String" parameterType="String">
+        select aid from scutcat.sciarticle where sciarticle.title like '%${pattern}%' or content like '%${pattern}%' or tag like '%${pattern}%';
+    </select>
+    <select id="get" resultType="SciArticle" parameterType="String">
+        select * from scutcat.sciarticle where aid = #{aid}
+    </select>
+    <insert id="add" parameterType="SciArticle" >
+        insert into scutcat.sciarticle(aid, tag, content, title) values
+        (#{aid},#{tag},#{content},#{title})
+    </insert>
+    <delete id="delete" parameterType="String">
+        delete from scutcat.sciarticle where aid=#{aid}
+    </delete>
+</mapper>

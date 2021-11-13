@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Service("PostService")
 public class PostServiceImp implements PostService {
@@ -157,5 +156,14 @@ public class PostServiceImp implements PostService {
             return new JsonResult(false,"User not found",null);
         }
         return new JsonResult(true,"Got user's following post",postMapper.getPostFollowedByUser(uid));
+    }
+
+    @Override
+    public JsonResult sharePost(String pid) {
+        Post post = postMapper.getPost(pid);
+        if (post==null)return new JsonResult(false,"Post not found",null);
+        post.setShare(post.getShare()+1);
+        postMapper.updatePost(post);
+        return new JsonResult(true,"Shared!",null);
     }
 }

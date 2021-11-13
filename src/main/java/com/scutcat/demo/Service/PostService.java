@@ -19,4 +19,5 @@ public interface PostService {
     JsonResult unfollow(String uid, String pid);
     JsonResult read(String uid, String pid);
     JsonResult getUserFollow(String uid);
+    JsonResult sharePost(String pid);
 }

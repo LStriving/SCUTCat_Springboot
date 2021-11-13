@@ -15,7 +15,7 @@ public class SciArticle {
     int like=0;
     String title;
 
-    public void SciArticle(String aid,String title,String tag,String content){
+    public SciArticle(String aid,String title,String tag,String content){
         setAid(aid);
         setContent(content);
         setTag(tag);
