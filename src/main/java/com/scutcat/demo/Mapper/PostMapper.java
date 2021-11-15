@@ -26,4 +26,7 @@ public interface PostMapper {
     void addHistory(History history);
     List<String>getPostFollowedByUser(String uid);
     List<String> search(String name);
+    List<String> getRecommendByLike(String uid);
+    List<String> getRecommendByTime(String uid);
+    List<String> getRecommendByHot(String uid);
 }

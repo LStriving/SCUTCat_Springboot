@@ -31,6 +31,6 @@
         select cid from scutcat.comment where  pid=#{pid} order by `like` desc
     </select>
     <select id="getCommentByPidByTime" parameterType="String" resultType="String">
-        select cid from scutcat.comment where  pid=#{pid} group by `time` desc
+        select cid from scutcat.comment where  pid=#{pid} order by `time` desc
     </select>
 </mapper>

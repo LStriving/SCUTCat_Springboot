@@ -83,4 +83,15 @@ public class PostController {
                              @RequestParam("tag")String tag){
         return postService.update(pid,content,tag);
     }
+
+    /**
+     *
+     * @param mode:Support three mode: time,like,hot
+     * @param uid: User Id
+     * @return
+     */
+    @RequestMapping("/getRecommend")
+    public JsonResult getRecommend(@RequestParam("mode")String mode,@RequestParam("uid")String uid){
+        return postService.getRecommend(mode,uid);
+    }
 }

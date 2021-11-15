@@ -14,7 +14,7 @@
         delete from scutcat.post where pid=#{pid}
     </delete>
     <select id="getUserAll" parameterType="String" resultType="Post">
-        select pid from scutcat.post where uid=#{uid} group by time desc
+        select pid from scutcat.post where uid=#{uid} order by time desc
     </select>
     <update id="updatePost" parameterType="Post" >
         update scutcat.post
@@ -45,5 +45,14 @@
     </insert>
     <select id="getPostFollowedByUser" parameterType="String" resultType="String">
         select pid from scutcat.userfollowpost where uid=#{uid}
+    </select>
+    <select id="getRecommendByLike" parameterType="String" resultType="String">
+        select pid from scutcat.post where uid!=#{uid} order by `like` desc
+    </select>
+    <select id="getRecommendByTime" parameterType="String" resultType="String">
+        select pid from scutcat.post where uid!=#{uid} order by time desc
+    </select>
+    <select id="getRecommendByHot" resultType="String" parameterType="String">
+        select pid from scutcat.post where uid!=#{uid} order by hot desc
     </select>
 </mapper>

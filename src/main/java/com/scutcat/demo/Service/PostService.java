@@ -21,4 +21,5 @@ public interface PostService {
     JsonResult getUserFollow(String uid);
     JsonResult sharePost(String pid);
     JsonResult update(String pid, String content, String tag);
+    JsonResult getRecommend(String mode, String uid);
 }

@@ -42,6 +42,21 @@ public class PostServiceImp implements PostService {
     }
 
     @Override
+    public JsonResult getRecommend(String mode, String uid) {
+        if(userMapper.getUser(uid)==null)return new JsonResult(false,"User not found",null);
+        switch (mode) {
+            case "like":
+                return new JsonResult(true, "Sorted by like number", postMapper.getRecommendByLike(uid));
+            case "time":
+                return new JsonResult(true, "Sorted by time", postMapper.getRecommendByTime(uid));
+            case "hot":
+                return new JsonResult(true, "Sorted by hot rate", postMapper.getRecommendByHot(uid));
+            default:
+                return new JsonResult(true,"Unknown mode, return data sorted by time",postMapper.getRecommendByTime(uid));
+        }
+    }
+
+    @Override
     public JsonResult addPost(String uid, String pid, String content, String tag) {
         postMapper.insertPost(new Post(pid,uid,content,tag));
         if(postMapper.getPost(pid)!=null){
