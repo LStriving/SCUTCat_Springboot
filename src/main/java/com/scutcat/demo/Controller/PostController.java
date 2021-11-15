@@ -18,7 +18,7 @@ public class PostController {
      * get Post and add it user's view history
      * @param uid user id
      * @param pid post id
-     * @return json with data Post
+     * @return json with data : Post
      */
     @RequestMapping("/read")
     public JsonResult read(@RequestParam("uid")String uid,
@@ -76,5 +76,11 @@ public class PostController {
     @RequestMapping("/share")
     public JsonResult sharePost(@RequestParam("pid")String pid){
         return postService.sharePost(pid);
+    }
+    @RequestMapping("/update")
+    public JsonResult update(@RequestParam("pid")String pid,
+                             @RequestParam("content")String content,
+                             @RequestParam("tag")String tag){
+        return postService.update(pid,content,tag);
     }
 }

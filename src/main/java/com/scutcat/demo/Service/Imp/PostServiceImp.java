@@ -25,6 +25,22 @@ public class PostServiceImp implements PostService {
     PostMapper postMapper;
     @Resource
     UserMapper userMapper;
+
+    @Override
+    public JsonResult update(String pid, String content, String tag) {
+        Post post = postMapper.getPost(pid);
+        if(post==null){
+            return new JsonResult(false,"Post not found",null);
+        }else{
+            post.setContent(content);
+            post.setTag(tag);
+            SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+            post.setTime(ft.format(new Date()));
+            postMapper.updatePost(post);
+            return new JsonResult(true,"update success",null);
+        }
+    }
+
     @Override
     public JsonResult addPost(String uid, String pid, String content, String tag) {
         postMapper.insertPost(new Post(pid,uid,content,tag));
