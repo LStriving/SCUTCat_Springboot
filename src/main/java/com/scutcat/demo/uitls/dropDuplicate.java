@@ -3,6 +3,9 @@ package com.scutcat.demo.uitls;
 import java.util.List;
 import java.util.TreeSet;
 
+/**
+* used for drop duplicate pid or aid in a list
+ */
 public class dropDuplicate {
     public static List<String> drop(List<String> res){
         /*
