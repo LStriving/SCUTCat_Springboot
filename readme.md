@@ -114,11 +114,11 @@ server(https) port:443
  
 ### 5.1 帖子
 
--[ ] 大量的帖子一次性返回与选择数量返回:getFollow,getUserAll,...
+- [ ] 大量的帖子一次性返回与选择数量返回:getFollow,getUserAll,...
 
 ### 5.2 mysql mybatis
 
--[ ] 待测试：group by / order by 等SQL语句
+- [ ] 待测试：group by / order by 等SQL语句
 
 ## 附录
 
