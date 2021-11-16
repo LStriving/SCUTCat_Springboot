@@ -6,7 +6,6 @@ import com.scutcat.demo.Dto.Post;
 import com.scutcat.demo.Dto.UserFollowPost;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Mapper
@@ -29,4 +28,5 @@ public interface PostMapper {
     List<String> getRecommendByLike(String uid);
     List<String> getRecommendByTime(String uid);
     List<String> getRecommendByHot(String uid);
+    List<String> getAllPost();
 }

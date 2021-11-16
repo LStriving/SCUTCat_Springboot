@@ -6,6 +6,8 @@ server:
     key-store-password: 558ry9656hp3742
     key-store-type: JKS
 spring:
+  enable:
+    scheduling: true
   datasource:
     username: root
     password: 123456
@@ -28,6 +30,8 @@ spring:
       max-pool-prepared-statement-per-connection-size: 20
       filters: stat,wall
       use-global-data-source-stat: true
+
+
 mybatis:
   type-aliases-package: com.scutcat.demo.Dto
   mapper-locations: classpath:Mybatis.Mapper/*.xml

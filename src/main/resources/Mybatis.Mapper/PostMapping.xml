@@ -55,4 +55,7 @@
     <select id="getRecommendByHot" resultType="String" parameterType="String">
         select pid from scutcat.post where uid!=#{uid} order by hot desc
     </select>
+    <select id="getAllPost" resultType="String">
+        select pid from scutcat.post order by hot
+    </select>
 </mapper>
