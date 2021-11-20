@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service("UserService")
+@Service("SciArticleService")
 public class SciArticleServiceImp implements SciArticleService {
     @Resource
     SciArticleMapper mapper;

@@ -12,7 +12,7 @@ public class TestUser {
     UserMapper mapper;
     @Test
     public void TestAdd(){
-        mapper.addUser(new User("123456","test测试",1,"https://thirdwx.qlogo.cn/mmopen/vi_32/7g6icshVrInLufNoerpJ6R6CYX8opia5gjT7971sI5ab86Qpibw1ECibZDb4VzhO3ibEj3DGF3TLaA0JVyUGFvJCvSA/132"));
+        mapper.addUser(new User("12346","test测试",1,"https://thirdwx.qlogo.cn/mmopen/vi_32/7g6icshVrInLufNoerpJ6R6CYX8opia5gjT7971sI5ab86Qpibw1ECibZDb4VzhO3ibEj3DGF3TLaA0JVyUGFvJCvSA/132"));
     }
     @Test
     public void TestGet(){
