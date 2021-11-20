@@ -30,7 +30,7 @@ public class TestSciArt {
     }
     @Test
     public void testAdd(){
-        mapper.add(new SciArticle("123456","title","#tag","科普科普科普"));
+        mapper.add(new SciArticle("12345","title","#tag","cat科普科普科普"));
     }
     @Test
     public void testDelete(){
