@@ -78,14 +78,14 @@ public class UserServiceImp implements UserService {
         User user=mapper.getUser(uid);
         if(user==null) return new JsonResult(false,"User not found!",null);
         user.setGender(gender);
-        user.setAvatar_url(avatarUrl);
+        user.setAvatarUrl(avatarUrl);
         user.setName(name);
         user.setType(type);
         mapper.updateUser(user);
         User newUser=mapper.getUser(uid);
         if(newUser.getType().equals(type)&&
             newUser.getGender()==gender&&
-            newUser.getAvatar_url().equals(avatarUrl)&&
+            newUser.getAvatarUrl().equals(avatarUrl)&&
             newUser.getName().equals(name)){
             return new JsonResult(true,"Successfully update!",null);
         }
