@@ -118,11 +118,15 @@ server(https) port:443
 
 - [ ] 大量的帖子一次性返回与选择数量返回:getFollow,getUserAll,...
 
+- [ ] RESTful API标准化？
+
 - [ ] 待测试：每小时自动更新post hot（热度）
+
+- [ ] 待修改：更新状态不可重复的例子：事务化（置顶/点赞？）
 
 ### 5.2 mysql mybatis
 
-- [ ] 待测试：group by / order by 等SQL语句
+- [ ] 待测试：order by SQL语句
 
 ## 附录
 
