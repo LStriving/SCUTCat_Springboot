@@ -1,6 +1,6 @@
 package com.scutcat.demo.mapper;
 
-import com.scutcat.demo.Dto.User;
+import com.scutcat.demo.dao.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

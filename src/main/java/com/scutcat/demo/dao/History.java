@@ -1,13 +1,14 @@
-package com.scutcat.demo.Dto;
+package com.scutcat.demo.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-public class LikePost {
+public class History {
     String uid;
     String pid;
+    String time;
 }

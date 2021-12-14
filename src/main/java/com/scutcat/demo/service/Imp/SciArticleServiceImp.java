@@ -1,6 +1,6 @@
 package com.scutcat.demo.service.Imp;
 
-import com.scutcat.demo.Dto.SciArticle;
+import com.scutcat.demo.dao.SciArticle;
 import com.scutcat.demo.mapper.SciArticleMapper;
 import com.scutcat.demo.mapper.UserMapper;
 import com.scutcat.demo.service.SciArticleService;
@@ -24,9 +24,11 @@ public class SciArticleServiceImp implements SciArticleService {
     @Override
     public JsonResult getAll() {
         List<String> res = mapper.getAll();
-        if(res!=null)
-            return new JsonResult(true,"get all science post",res);
-        else return new JsonResult(false,"data access failed!",null);
+        if(res!=null) {
+            return new JsonResult<>(res);
+        } else {
+            return new JsonResult(404,"data access failed!");
+        }
     }
 
     @Override
@@ -46,23 +48,30 @@ public class SciArticleServiceImp implements SciArticleService {
         for (Term word:parse.getTerms()){
             res.addAll(mapper.search(word.getName()));
         }
-        return new JsonResult(true,"found", DropDuplicate.drop(res));
+        return new JsonResult<>(DropDuplicate.drop(res));
     }
 
     @Override
     public JsonResult get(String aid) {
         SciArticle article = mapper.get(aid);
-        if (article==null)return new JsonResult<>(404,"article with aid: "+aid+" not found");
-        return new JsonResult(true,"found",article);
+        if (article==null) {
+            return new JsonResult<>(404,"article with aid: "+aid+" not found");
+        }
+        return new JsonResult<>(article);
     }
 
     @Override
-    public JsonResult publish(String aid, String title, String tag, String content) {
-        if (mapper.get(aid)!=null)return new JsonResult(false,"Aid conflict,need a different id",null);
-        SciArticle sciArticle = new SciArticle(aid, title, tag, content);
-        mapper.add(sciArticle);
-        if(mapper.get(aid)==null)return new JsonResult(false,"publish failed!",null);
-        return new JsonResult(true,"Publish success",null);
+    public JsonResult publish(SciArticle article) {
+        if (mapper.get(article.getAid())!=null) {
+            return new JsonResult<>(201,"Aid conflict,need a different id");
+        }
+        try {
+            mapper.add(article);
+            return new JsonResult<>();
+        }catch (Exception e){
+            return new JsonResult<>(500, e.getMessage());
+        }
+
 
     }
 
@@ -80,6 +89,6 @@ public class SciArticleServiceImp implements SciArticleService {
         if (mapper.get(aid)==null) {
             return new JsonResult<>(200,"Deletion successes!");
         }
-        return new JsonResult(false,"Deletion failed!",null);
+        return new JsonResult<>(500,"Deletion failed!");
     }
 }

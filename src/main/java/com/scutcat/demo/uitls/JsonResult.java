@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
  * @author LYR
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @ApiModel(description = "通用响应类")
 public class JsonResult<T> {
     @ApiModelProperty(value = "状态码")

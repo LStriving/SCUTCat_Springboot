@@ -1,6 +1,6 @@
 package com.scutcat.demo.mapper;
 
-import com.scutcat.demo.Dto.SciArticle;
+import com.scutcat.demo.dao.SciArticle;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

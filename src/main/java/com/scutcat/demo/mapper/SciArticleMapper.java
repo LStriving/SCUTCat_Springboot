@@ -1,6 +1,6 @@
 package com.scutcat.demo.mapper;
 
-import com.scutcat.demo.Dto.SciArticle;
+import com.scutcat.demo.dao.SciArticle;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

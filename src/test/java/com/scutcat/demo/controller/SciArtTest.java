@@ -1,5 +1,6 @@
 package com.scutcat.demo.controller;
 
+import com.scutcat.demo.dao.SciArticle;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -22,10 +23,10 @@ public class SciArtTest {
     }
     @Test
     public void testPublish(){
-        System.out.println(controller.publish("123456","title","#tag","content"));
+        System.out.println(controller.publish(new SciArticle("123456","title","#tag","content")));
     }
     @Test
     public void testDelete(){
-        System.out.println(controller.delete("123456"));
+        System.out.println(controller.delete("123456","123"));
     }
 }

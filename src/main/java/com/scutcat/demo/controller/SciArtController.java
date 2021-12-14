@@ -1,5 +1,6 @@
 package com.scutcat.demo.controller;
 
+import com.scutcat.demo.dao.SciArticle;
 import com.scutcat.demo.service.SciArticleService;
 import com.scutcat.demo.uitls.JsonResult;
 import io.swagger.annotations.Api;
@@ -39,11 +40,8 @@ public class SciArtController {
 
     @PostMapping("/publish")
     @ApiOperation(value = "发表科普文章",notes="认证用户才拥有此权力")
-    public JsonResult publish(@RequestParam("aid")String aid,
-                              @RequestParam("title")String title,
-                              @RequestParam("tag")String tag,
-                              @RequestParam("content")String content){
-        return service.publish(aid,title,tag,content);
+    public JsonResult publish(@RequestBody SciArticle article){
+        return service.publish(article);
     }
 
     @RequestMapping("/delete/{aid}/{uid}")

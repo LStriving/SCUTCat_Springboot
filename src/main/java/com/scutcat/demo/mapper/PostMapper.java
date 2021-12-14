@@ -1,9 +1,9 @@
 package com.scutcat.demo.mapper;
 
-import com.scutcat.demo.Dto.History;
-import com.scutcat.demo.Dto.LikePost;
-import com.scutcat.demo.Dto.Post;
-import com.scutcat.demo.Dto.UserFollowPost;
+import com.scutcat.demo.dao.History;
+import com.scutcat.demo.dao.LikePost;
+import com.scutcat.demo.dao.Post;
+import com.scutcat.demo.dao.UserFollowPost;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import java.util.List;

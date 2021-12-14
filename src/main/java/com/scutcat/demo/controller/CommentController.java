@@ -1,6 +1,6 @@
 package com.scutcat.demo.controller;
 
-import com.scutcat.demo.Dto.Comment;
+import com.scutcat.demo.dao.Comment;
 import com.scutcat.demo.service.CommentService;
 import com.scutcat.demo.uitls.JsonResult;
 import io.swagger.annotations.Api;
@@ -63,7 +63,8 @@ public class CommentController {
      * @return list of cid order by `time` on descend
      */
     @GetMapping("/accessWithTime/{pid}")
-    public JsonResult getByPIDWithTime(@PathVariable("pid")@NotNull(message = "帖子的id不能为空")String pid){
+    @ApiOperation(value = "按时间获取评论的id")
+    public JsonResult getByPidWithTime(@PathVariable("pid")@NotNull(message = "帖子的id不能为空")String pid){
         return service.getByPostIdWithTime(pid);
     }
 }

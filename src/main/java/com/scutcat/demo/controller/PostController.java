@@ -33,29 +33,32 @@ public class PostController {
         return postService.read(uid,pid);
     }
     @PostMapping("/publish")
-    @ApiOperation(value = "发布帖子")
+    @ApiOperation(value = "发布帖子",notes = "参数的设置有待修改")
     public JsonResult publish(@RequestParam("uid")String uid,
                               @RequestParam("pid")String pid,
                               @RequestParam("content")String content,
                               @RequestParam("tag")String tag){
         return postService.addPost(uid,pid,content,tag);
     }
-    @RequestMapping("/delete")//待加入回复机制
-    public JsonResult delete(@RequestParam("uid")String uid,
-                             @RequestParam("pid")String pid){
+    @PostMapping("/delete")
+    @ApiOperation(value = "删除帖子",notes = "真删除，不可恢复，后续会考虑加入伪删除接口")
+    public JsonResult delete(@RequestParam("uid")@NotNull(message = "用户的id不能为空") String uid,
+                             @RequestParam("pid")@NotNull(message = "帖子的id不能为空")String pid){
         return postService.deletePost(uid,pid);
     }
-    @RequestMapping("/like")
-    public JsonResult like(@RequestParam("uid")String uid,
-                           @RequestParam("pid")String pid){
+    @PostMapping("/like/{uid}/{pid}")
+    @ApiOperation(value = "用户点赞帖子",notes = "用户id在前")
+    public JsonResult like(@PathVariable("uid")@NotNull(message = "用户的id不能为空") String uid,
+                           @PathVariable("pid")@NotNull(message = "帖子的id不能为空") String pid){
         return postService.likePost(uid,pid);
     }
-    @RequestMapping("/dislike")
-    public JsonResult dislike(@RequestParam("uid")String uid,
-                           @RequestParam("pid")String pid){
+    @PostMapping("/dislike")
+    @ApiOperation(value = "用户取消点赞帖子")
+    public JsonResult dislike(@RequestParam("uid")@NotNull(message = "用户的id不能为空")String uid,
+                           @RequestParam("pid")@NotNull(message = "帖子的id不能为空")String pid){
         return postService.dislikePost(uid,pid);
     }
-    @RequestMapping("/search")
+    @GetMapping("/search")
     @ApiOperation(value = "搜索相关的帖子",notes = "可以在文章的标题，内容，标签中查找")
     public JsonResult search(@RequestParam("pattern")String pattern){
         return postService.search(pattern);
@@ -92,7 +95,7 @@ public class PostController {
     public JsonResult sharePost(@PathVariable("pid")@NotNull(message = "文章ID不能为空")String pid){
         return postService.sharePost(pid);
     }
-    @RequestMapping("/update")
+    @PostMapping("/update")
     public JsonResult update(@RequestParam("pid")String pid,
                              @RequestParam("content")String content,
                              @RequestParam("tag")String tag){

@@ -1,7 +1,7 @@
 package com.scutcat.demo.service.Imp;
 
-import com.scutcat.demo.Dto.User;
-import com.scutcat.demo.Dto.UserFollow;
+import com.scutcat.demo.dao.User;
+import com.scutcat.demo.dao.UserFollow;
 import com.scutcat.demo.mapper.UserMapper;
 import com.scutcat.demo.service.UserService;
 import com.scutcat.demo.uitls.JsonResult;
@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * @author LYR
+ */
 @Service("UserService")
 public class UserServiceImp implements UserService {
     @Resource
@@ -21,74 +24,87 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public JsonResult getUser(String uid) {
+    public JsonResult<User> getUser(String uid) {
         User user=mapper.getUser(uid);
-        if(user!=null)
-            return new JsonResult(true,"user info",user);
-        else return new JsonResult(false,"User dose not exist",null);
+        if(user!=null) {
+            return new JsonResult<>(user);
+        } else {
+            return new JsonResult<>(404,"找不到该用户");
+        }
     }
 
     @Override
-    public JsonResult follow(String uid, String uuid) {
-        if(mapper.getUser(uid)==null||mapper.getUser(uuid)==null){
-            return new JsonResult(false,"User dose not exist!",null);
+    public JsonResult follow(UserFollow userFollow) {
+        try {
+            mapper.followUser(userFollow);
+            return new JsonResult<>();
+        }catch (Exception e){
+            if(mapper.getFollow(userFollow.getUid()).contains(userFollow.getUidFollowed())){
+                return new JsonResult<>(201,"用户已经关注啦！");
+            }else{
+                System.out.println("取消关注用户失败");
+                System.out.println(e.getMessage());
+                System.out.println("===========================");
+                e.printStackTrace();
+                return new JsonResult<>().failed(500,e.getMessage());
+            }
         }
-        UserFollow follow=new UserFollow(uid,uuid);
-        if(mapper.getFollow(uid).contains(uuid)){
-            return new JsonResult(false,"User already follow him/her",null);
-        }
-        mapper.followUser(follow);
-        if(mapper.getFollow(uid).contains(uuid)){
-            return new JsonResult(true,"Follow!",null);
-        }
-        return new JsonResult(false,"Action follow fails!",null);
     }
 
     @Override
-    public JsonResult unfollow(String uid, String uuid) {
-        if(mapper.getUser(uid)==null||mapper.getUser(uuid)==null){
-            return new JsonResult(false,"User dose not exist!",null);
+    public JsonResult unfollow(UserFollow userFollow) {
+        try {
+            mapper.unfollowUser(userFollow);
+            return new JsonResult<>();
+        }catch (Exception e){
+            if (!mapper.getFollow(userFollow.getUid()).contains(userFollow.getUidFollowed())) {
+                return new JsonResult<>(404,"你并没有关注这个用户哦！");
+            }
+            System.out.println("取消关注用户失败");
+            System.out.println(e.getMessage());
+            System.out.println("===========================");
+            e.printStackTrace();
+            return new JsonResult<>().failed(500,e.getMessage());
         }
-        if(!mapper.getFollow(uid).contains(uuid)){
-            return new JsonResult(false,"User did not follow him/her",null);
-        }
-        mapper.unfollowUser(new UserFollow(uid,uuid));
-        if(!mapper.getFollow(uid).contains(uuid)){
-            return new JsonResult(true,"Unfollow!",null);
-        }
-        else return new JsonResult(false,"Unfollow action fails!",null);
     }
 
     @Override
     public JsonResult getFans(String uid) {
-        if(mapper.getUser(uid)==null)return new JsonResult(false,"User dose not exist",null);
+        if(mapper.getUser(uid)==null)return new JsonResult(404,"User dose not exist");
         List<String> fans=mapper.getFans(uid);
-        return new JsonResult(true,"success",fans);
+        return new JsonResult<>(fans);
     }
 
     @Override
     public JsonResult getFollowing(String uid) {
-        if(mapper.getUser(uid)==null)return new JsonResult(false,"User dose not exist",null);
+        if(mapper.getUser(uid)==null) {
+            return new JsonResult<>(404,"User dose not exist");
+        }
         List<String> following=mapper.getFollow(uid);
-        return new JsonResult(true,"success",following);
+        return new JsonResult<>(following);
     }
 
     @Override
-    public JsonResult updateInfo(String uid, String name, String type, int gender, String avatarUrl) {
-        User user=mapper.getUser(uid);
-        if(user==null) return new JsonResult(false,"User not found!",null);
-        user.setGender(gender);
-        user.setAvatarUrl(avatarUrl);
-        user.setName(name);
-        user.setType(type);
-        mapper.updateUser(user);
-        User newUser=mapper.getUser(uid);
-        if(newUser.getType().equals(type)&&
-            newUser.getGender()==gender&&
-            newUser.getAvatarUrl().equals(avatarUrl)&&
-            newUser.getName().equals(name)){
-            return new JsonResult(true,"Successfully update!",null);
+    public JsonResult updateInfo(User user) {
+        User userNew = mapper.getUser(user.getUid());
+        //用户没找到
+        if(userNew==null){
+            return new JsonResult<>().failed(404,"User not found");
         }
-        return new JsonResult(false,"Fail to update",null);
+        //信息没有修改，不做处理
+        if(userNew==user){
+            return new JsonResult<>();
+        }
+        try{
+            mapper.updateUser(user);
+            return new JsonResult<>();
+        }catch (Exception e){
+            System.out.println("Update User Info failed!");
+            System.out.println(e.getMessage());
+            System.out.println("===========================");
+            e.printStackTrace();
+            return new JsonResult<>().failed(500,e.getMessage());
+        }
+
     }
 }

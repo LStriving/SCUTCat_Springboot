@@ -1,6 +1,6 @@
 package com.scutcat.demo.uitls;
 
-import com.scutcat.demo.Dto.Post;
+import com.scutcat.demo.dao.Post;
 import com.scutcat.demo.mapper.PostMapper;
 import org.springframework.scheduling.annotation.Scheduled;
 

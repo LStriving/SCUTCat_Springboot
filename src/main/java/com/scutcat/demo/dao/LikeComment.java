@@ -1,4 +1,4 @@
-package com.scutcat.demo.Dto;
+package com.scutcat.demo.dao;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

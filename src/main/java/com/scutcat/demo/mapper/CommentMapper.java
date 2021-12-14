@@ -1,7 +1,7 @@
 package com.scutcat.demo.mapper;
 
-import com.scutcat.demo.Dto.Comment;
-import com.scutcat.demo.Dto.LikeComment;
+import com.scutcat.demo.dao.Comment;
+import com.scutcat.demo.dao.LikeComment;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
