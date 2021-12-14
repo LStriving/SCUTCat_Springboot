@@ -5,6 +5,8 @@ server:
     key-store: classpath:2625847986.jks
     key-store-password: 558ry9656hp3742
     key-store-type: JKS
+  servlet:
+    context-path: /api
 spring:
   enable:
     scheduling: true
@@ -35,3 +37,5 @@ spring:
 mybatis:
   type-aliases-package: com.scutcat.demo.Dto
   mapper-locations: classpath:Mybatis.Mapper/*.xml
+knife4j:
+  enable: true

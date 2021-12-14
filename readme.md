@@ -11,14 +11,14 @@
 [![MySql 5.7](https://img.shields.io/badge/MySql-5.7.0-blue?style=for-the-badge)](https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-winx64.zip)
 [![Maven 3.8](https://img.shields.io/badge/Maven-3.8-lightblue?style=for-the-badge)]()
 [![support os](https://img.shields.io/badge/os-linux%2C%20win%2C%20mac-yellow.svg?style=for-the-badge)]()
-
+[![Knife4j](https://img.shields.io/badge/Knife4J-lightblue?style=for-the-badge)](https://doc.xiaominfo.com/knife4j/)
 </div>
 
 ---
 
 ## 1.系统说明
 
-本系统为微信小程序的后端程序
+本系统为微信小程序的后端程序，接口文档的地址为：http://localhost:8080/api/doc.html
 
 ## 2. 系统配置
 

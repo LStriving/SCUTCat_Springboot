@@ -1,7 +1,7 @@
 package com.scutcat.demo.uitls;
 
 import com.scutcat.demo.Dto.Post;
-import com.scutcat.demo.Mapper.PostMapper;
+import com.scutcat.demo.mapper.PostMapper;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.annotation.Resource;
@@ -11,6 +11,9 @@ import java.util.Date;
 import java.util.List;
 
 
+/**
+ * @author LYR
+ */
 public class UpdateHotScheduler {
     @Resource
     PostMapper mapper;
